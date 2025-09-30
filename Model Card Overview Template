@@ -1,0 +1,90 @@
+Nclusive Scan Accessibility Model v1.0 Overview
+
+Description:
+Nclusive Scan Accessibility Model v1.0 converts healthcare and enterprise documents into multimodal accessible formats—ASL avatar video, simplified text, closed captions, and synthesized audio—and packages them into an accessible MP4 output.
+
+Developed by Nclusive Scan, in partnership with Cone Health Ventures, the system uses NVIDIA NeMo for text processing/simplification, NVIDIA Riva for ASR/TTS, and an internal text-to-gesture model integrated with NVIDIA Omniverse and Audio2Face for avatar animation and rendering. This model is ready for commercial use.
+
+Third-Party Community Consideration
+This model is not owned or developed by NVIDIA. It was built using NVIDIA frameworks to Nclusive Scan’s accessibility requirements.
+
+License/Terms of Use:
+Enterprise subscription, subject to Nclusive Scan’s licensing terms.
+
+Deployment Geography:
+Global, with initial deployment in North America (NAM).
+
+Use Case:
+Patients, caregivers, and providers access healthcare instructions in ASL video, simplified text, audio, and captions.
+
+Release Date:
+TBD
+Other channels: Pending
+
+Reference(s):
+(Leave blank if none)
+
+Model Architecture
+
+Architecture Type: Multimodal pipeline (Seq2Seq transformer for text + text-to-gesture avatar pipeline)
+
+Network Components:
+
+NeMo LLM backbone (Seq2Seq text processing & simplification)
+
+Riva ASR (speech-to-text) and Riva TTS (text-to-speech)
+
+Text-to-Gesture Model driving avatar motions
+
+NVIDIA Omniverse + Audio2Face for animation blending and ASL avatar video rendering
+
+Base Model: NVIDIA NeMo Megatron-TLM
+
+Number of Parameters: ~3.1 × 10^9
+
+(Internal Only — Not for Publishing)
+Initialized from NeMo checkpoints; tuned with dropout, learning-rate scheduling, and mixed-precision optimization.
+
+Computational Load
+
+Cumulative Compute: ~2.5 × 10^20 FLOPs
+
+Estimated Energy/Emissions: ~25 MWh (carbon offset purchased)
+
+Input
+
+Types: Text; Audio (optional); Image (optional)
+
+Formats: UTF-8 text; WAV/MP3 audio; RGB video frames (for ASL alignment testing)
+
+Properties: Text ≤ 5,000 tokens; Audio ≤ 2 minutes; Video ≤ 2 minutes
+
+Output
+
+Types: Video (ASL avatar), Text (simplified & captions), Audio (speech)
+
+Formats: MP4 (ASL video), UTF-8 text, WAV/MP3
+
+Parameters: 1080p @ 30 fps; simplified text ≤ 6th-grade reading level; word timestamps available; audio latency target ≤ 300 ms
+
+Captions: SRT/VTT generation included
+
+Software Integration
+
+Runtime/Tools:
+
+NeMo ≥ 2.0
+
+Riva ≥ 2.15 (ASR/TTS)
+
+NVIDIA Omniverse and Audio2Face (avatar animation/rendering)
+
+Supported Hardware Microarchitectures: NVIDIA Ampere, Hopper, Blackwell, Lovelace, Jetson
+
+Supported OS: Linux, Linux for Tegra, Windows
+
+Model Version(s)
+
+Nclusive Scan Accessibility Model v1.0 (deployable)
+
+Future variants: v1.1 (quantized, Jetson-optimized)
